@@ -48,12 +48,12 @@ export const CreateUser = ({ onAddUser }: Props) => {
         aria-hidden={!isModalOpen}
         className={`${
           isModalOpen ? "" : "hidden"
-        } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full`}
+        } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-neutral-800/80 mb-5`}
       >
-        <div className="relative p-4 w-full max-w-md max-h-full">
-          <div className="relative rounded-lg shadow-sm  bg-gray-700">
+        <div className="relative p-4  max-w-full max-h-full flex justify-center">
+          <div className=" rounded-lg shadow-sm w-[50%] bg-gray-700">
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t  border-gray-600">
-              <h3 className="text-xl font-semibold text-gray-900  ">
+              <h3 className="text-xl font-semibold text-white">
                 Add new user
               </h3>
               <button
@@ -84,7 +84,7 @@ export const CreateUser = ({ onAddUser }: Props) => {
                 <div>
                   <label
                     htmlFor="firstName"
-                    className="block mb-2 text-sm font-medium text-gray-900  "
+                    className="block mb-2 text-sm font-medium text-white  "
                   >
                     First name
                   </label>
@@ -95,7 +95,7 @@ export const CreateUser = ({ onAddUser }: Props) => {
                     onChange={(e) =>
                       setFormData({ ...formData, firstName: e.target.value })
                     }
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   placeholder-gray-400  "
+                    className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg   w-full p-1.5"
                     required
                   />
                 </div>
@@ -103,7 +103,7 @@ export const CreateUser = ({ onAddUser }: Props) => {
                 <div>
                   <label
                     htmlFor="lastName"
-                    className="block mb-2 text-sm font-medium text-gray-900  "
+                    className="block mb-2 text-sm font-medium text-white  "
                   >
                     Last name
                   </label>
@@ -114,7 +114,7 @@ export const CreateUser = ({ onAddUser }: Props) => {
                     onChange={(e) =>
                       setFormData({ ...formData, lastName: e.target.value })
                     }
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   placeholder-gray-400  "
+                    className="bg-gray-50 border border-gray-300 text-gray-600  text-sm rounded-lg   w-full p-1.5"
                     required
                   />
                 </div>
@@ -122,7 +122,7 @@ export const CreateUser = ({ onAddUser }: Props) => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900  "
+                    className="block mb-2 text-sm font-medium text-white"
                   >
                     Email
                   </label>
@@ -133,7 +133,7 @@ export const CreateUser = ({ onAddUser }: Props) => {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    placeholder-gray-400  "
+                    className="bg-gray-50 border border-gray-300 text-gray-600  text-sm rounded-lg  w-full p-1.5  "
                     required
                   />
                 </div>

@@ -21,8 +21,8 @@ export const TableUsers = ({
 }: Props) => {
   if (isLoading) return <div>Cargando...</div>;
   return (
-    <div className="relative w-[100vw]">
-      <div className="flex justify-center items-center gap-1.5">
+    <div className="relative flex flex-col justify-center items-center mb-5">
+      <div className="flex justify-center items-center gap-1.5 mt-5">
         <button
           onClick={syncWithAPI}
           className="block text-white bg-gray-800 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center 700  focus:ring-blue-800 mb-4"
@@ -32,8 +32,8 @@ export const TableUsers = ({
 
         <CreateUser onAddUser={onAddUser} />
       </div>
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500  ">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-700  ">
+      <table className="text-sm text-left rtl:text-right text-gray-500 w-[50%]">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-700 ">
           <tr>
             <th scope="col" className="px-6 py-3 text-white">
               firstName
@@ -56,7 +56,7 @@ export const TableUsers = ({
             data.map((user: User) => (
               <tr
                 key={user.id}
-                className=" border-b  bg-gray-800 border-gray-200"
+                className=" border-b  bg-gray-900 border-gray-200"
               >
                 <td
                   scope="row"
@@ -69,7 +69,7 @@ export const TableUsers = ({
                 <td className="px-6 py-4 text-white">
                   <button
                     onClick={() => onDeleteUser(user.id)}
-                    className="bg-white p-3 rounded-2xl text-red-600 hover:text-red-900 cursor-pointer"
+                    className="bg-gray-700 w-full p-3 rounded-2xl text-white cursor-pointer"
                   >
                     Delete
                   </button>
