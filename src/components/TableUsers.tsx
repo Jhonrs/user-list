@@ -21,7 +21,7 @@ export const TableUsers = ({
 }: Props) => {
   if (isLoading) return <div>Cargando...</div>;
   return (
-    <div className="relative flex flex-col justify-center items-center mb-5">
+    <div className="relative md:flex flex-col justify-center items-center mb-5">
       <div className="flex justify-center items-center gap-1.5 mt-5">
         <button
           onClick={syncWithAPI}
