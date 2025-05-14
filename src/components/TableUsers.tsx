@@ -1,7 +1,9 @@
 // TableUsers.tsx
+// Se crea este componente para mostrar la tabla
 import type { User } from "../interfaces";
 import { CreateUser } from "./CreateUser";
 
+// Se crea los props para tipar los datos que se van a utilizar en el componente y hacerlo más estricto
 interface Props {
   data: User[];
   onDeleteUser: (userId: string) => void;
@@ -23,7 +25,7 @@ export const TableUsers = ({
       <div className="flex justify-center items-center gap-1.5">
         <button
           onClick={syncWithAPI}
-          className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  bg-blue-950  hover:bg-blue-700  focus:ring-blue-800 mb-4"
+          className="block text-white bg-gray-800 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center 700  focus:ring-blue-800 mb-4"
         >
           Sincronizar con API
         </button>
@@ -31,7 +33,7 @@ export const TableUsers = ({
         <CreateUser onAddUser={onAddUser} />
       </div>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500  ">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50  bg-gray-700  ">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-700  ">
           <tr>
             <th scope="col" className="px-6 py-3 text-white">
               firstName
@@ -48,11 +50,13 @@ export const TableUsers = ({
           </tr>
         </thead>
         <tbody>
+
+            {/* Se crea un map para posicionar en la tabla cada usaario creado */}
           {data &&
             data.map((user: User) => (
               <tr
                 key={user.id}
-                className=" border-b  bg-gray-800  border-gray-700 border-gray-200"
+                className=" border-b  bg-gray-800 border-gray-200"
               >
                 <td
                   scope="row"
@@ -65,7 +69,7 @@ export const TableUsers = ({
                 <td className="px-6 py-4 text-white">
                   <button
                     onClick={() => onDeleteUser(user.id)}
-                    className="bg-white p-2 rounded-2xl text-red-600 hover:text-red-900 pointer"
+                    className="bg-white p-3 rounded-2xl text-red-600 hover:text-red-900 cursor-pointer"
                   >
                     Delete
                   </button>

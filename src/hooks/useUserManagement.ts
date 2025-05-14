@@ -14,56 +14,56 @@ const filterValidUsers = (users: User[]) =>
 
 export const useUserManagement = () => {
   const [state, dispatch] = useReducer(userReducer, []);
-  const [shouldSync, setShouldSync] = useState(false);
+  const [shouldSync, setShouldSync] = useState(true);
   const { data: apiData, isLoading } = useFetch<User[]>(API_URL);
 
-  // Cargar datos iniciales desde localStorage
+  // 1. Carga inicial desde API
   useEffect(() => {
-    const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (savedData) {
-      dispatch({ type: "REPLACE_ALL", payload: JSON.parse(savedData) });
-    }
-  }, []);
-
-// Sincronización manual con API
-useEffect(() => {
-    if (apiData && shouldSync) {
-      const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-      const localUsers = savedData ? JSON.parse(savedData) : [];
-      
-      // Combinar manteniendo eliminaciones locales
-      const mergedUsers = apiData.filter(apiUser => 
-        !localUsers.some((localUser: User) => localUser.id === apiUser.id)
-      );
-      
-      const newUsers = [...localUsers, ...mergedUsers];
-      dispatch({ type: 'REPLACE_ALL', payload: newUsers });
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newUsers));
+    if (shouldSync && apiData) {
+      // Filtrar y guardar datos válidos
+      const validUsers = apiData.filter(user => user.status === true);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(validUsers));
+      dispatch({ type: 'REPLACE_ALL', payload: validUsers });
       setShouldSync(false);
     }
   }, [apiData, shouldSync]);
 
-  // 2. Persistir solo usuarios válidos
+  // 2. Cargar desde localStorage en recargas
   useEffect(() => {
-    const validUsers = state.filter((user) => user.status === true);
-    if (validUsers.length !== state.length || validUsers.length > 0) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(validUsers));
+    if (!shouldSync) return;
+    
+    const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (savedData) {
+      const localUsers = JSON.parse(savedData) as User[];
+      dispatch({ type: 'REPLACE_ALL', payload: localUsers });
+      setShouldSync(false);
+    }
+  }, [shouldSync]);
+
+  // 3. Persistir cambios locales
+  useEffect(() => {
+    if (!shouldSync) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
     }
   }, [state]);
 
-  // 3. Acciones
+  // 4. Acciones
   const addUser = (user: User) => {
-    dispatch({ type: "ADD_USER", payload: { ...user, status: true } });
+    dispatch({ type: 'ADD_USER', payload: { ...user, status: true } });
   };
 
   const deleteUser = (userId: string) => {
-    dispatch({ type: "DELETE_USER", payload: userId });
+    dispatch({ type: 'DELETE_USER', payload: userId });
   };
 
-  const syncWithAPI = () => {
-    setShouldSync(true);
+  // 5. Sincronización manual
+  const syncWithAPI = async () => {
+    if (apiData) {
+      const mergedUsers = [...state, ...apiData]
+        .filter((v, i, a) => a.findIndex(t => t.id === v.id) === i);
+      dispatch({ type: 'REPLACE_ALL', payload: mergedUsers });
+    }
   };
-
 
   return {
     users: filterValidUsers(state),

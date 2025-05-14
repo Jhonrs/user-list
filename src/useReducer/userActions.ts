@@ -1,3 +1,4 @@
+// Se crean las acciones para el Reducer
 import type { User } from "../interfaces";
 
 export type userAction = 

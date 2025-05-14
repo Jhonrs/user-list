@@ -1,3 +1,4 @@
+// Se crea el reducer para usar las diferentes acciones
 import type { User } from "../interfaces";
 import type { userAction } from "./userActions";
 

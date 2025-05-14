@@ -1,4 +1,5 @@
 // CreateUser.tsx
+// Se crea el componente, para que tenga su propia logica a la hora de crear un nuevo usuario
 import { useState } from "react";
 import type { User } from "../interfaces";
 
@@ -7,6 +8,8 @@ interface Props {
 }
 
 export const CreateUser = ({ onAddUser }: Props) => {
+
+    /* Se utilizan estados para manejar los eventos, en esta caso la visibilidad del modal, y la creación de los nuevos usuarios */
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -33,7 +36,7 @@ export const CreateUser = ({ onAddUser }: Props) => {
     <>
       <button
         onClick={handleOpenModal}
-        className="block text-white bg-blue-950 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center    hover:bg-blue-700  focus:ring-blue-800 mb-4"
+        className="block text-white bg-gray-800 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center 700  focus:ring-blue-800 mb-4"
         type="button"
       >
         Add New User
@@ -92,7 +95,7 @@ export const CreateUser = ({ onAddUser }: Props) => {
                     onChange={(e) =>
                       setFormData({ ...formData, firstName: e.target.value })
                     }
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-600  border-gray-500  placeholder-gray-400  text-white"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   placeholder-gray-400  "
                     required
                   />
                 </div>
@@ -111,7 +114,7 @@ export const CreateUser = ({ onAddUser }: Props) => {
                     onChange={(e) =>
                       setFormData({ ...formData, lastName: e.target.value })
                     }
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-600  border-gray-500  placeholder-gray-400  text-white"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   placeholder-gray-400  "
                     required
                   />
                 </div>
@@ -130,14 +133,14 @@ export const CreateUser = ({ onAddUser }: Props) => {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-600  border-gray-500  placeholder-gray-400  text-white"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    placeholder-gray-400  "
                     required
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  bg-blue-600  hover:bg-blue-700  focus:ring-blue-800"
+                  className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center  focus:ring-blue-800"
                 >
                   Add User
                 </button>
